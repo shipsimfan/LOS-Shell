@@ -1,4 +1,4 @@
-ENTRY(main)
+ENTRY(_start)
 SECTIONS {
     BASE_ADDR = 0x100000;
     

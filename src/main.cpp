@@ -1,6 +1,1 @@
-extern "C" int main(int argc, char** argv) {
-    while (1)
-        ;
-
-    return 0;
-}
+extern "C" int main(int argc, char** argv) { return 0xDEADBEEF; }
