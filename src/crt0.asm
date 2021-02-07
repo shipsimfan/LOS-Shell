@@ -1,12 +1,6 @@
 GLOBAL _start
 EXTERN main
 _start:
-    mov rcx, 0xBADC0DE
-
-    xor rax, rax
-
-    call main
-
     ; Execute(const char* filename)
     ;mov rdi, 3
     ;mov rsi, filename
@@ -25,11 +19,12 @@ _start:
 
     ; Exit()
     mov rdi, 0
+    mov rsi, 0
     syscall
 
     .hang:
         jmp .hang
 
-message: db 0x0A, "Hello World!", 0x0A, 0x00
+message: db 0x0A, "LOS Shell!", 0x0A, 0x00
 
 buffer: resb 2048
