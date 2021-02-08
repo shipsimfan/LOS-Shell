@@ -1,3 +1,4 @@
+#include <proc.h>
 #include <stdio.h>
 #include <string.h>
 
@@ -11,9 +12,17 @@ int main() {
         int bytesRead = ReadLine(buffer, 128);
         if (strcmp(buffer, "EXIT") == 0)
             break;
-
-        DisplayString("\n");
-        DisplayString(buffer);
+        else if (buffer[0] == ';') {
+            buffer[0] = ':';
+            pid_t pid = exec(buffer);
+            if (pid > 0) {
+                uint64_t status;
+                waitPID(0, &status);
+            }
+        } else {
+            DisplayString("\n");
+            DisplayString(buffer);
+        }
     }
 
     return 0;
