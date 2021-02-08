@@ -18,7 +18,7 @@ ASM_OBJ_FILES := $(ASM_SRC_FILES:$(SRC_DIR)/%.asm=$(OBJ_DIR)/%.o)
 
 # PROGRAMS
 CPP := x86_64-elf-g++
-CPP_FLAGS := -ffreestanding -mcmodel=large -mno-red-zone -mno-mmx -mno-sse -mno-sse2 -c -Wall -D DEBUG -g
+CPP_FLAGS := -ffreestanding -mcmodel=large -mno-red-zone -mno-mmx -mno-sse -mno-sse2 -c -Wall -D DEBUG -g -I./include
 
 ASM := nasm
 ASM_FLAGS := -f elf64 -g -F dwarf
