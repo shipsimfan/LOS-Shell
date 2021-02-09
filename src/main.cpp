@@ -10,6 +10,7 @@ int main() {
     while (1) {
         DisplayString("\n> ");
         int bytesRead = ReadLine(buffer, 128);
+        DisplayString("\n");
         if (strcmp(buffer, "EXIT") == 0)
             break;
         else if (buffer[0] == ';') {
@@ -17,10 +18,9 @@ int main() {
             pid_t pid = exec(buffer);
             if (pid > 0) {
                 uint64_t status;
-                waitPID(0, &status);
+                waitPID(pid, &status);
             }
         } else {
-            DisplayString("\n");
             DisplayString(buffer);
         }
     }

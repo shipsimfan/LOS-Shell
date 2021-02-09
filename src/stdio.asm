@@ -6,6 +6,14 @@ DisplayString:
 
     ret
 
+GLOBAL DisplayHex
+DisplayHex:
+    mov rsi, rdi
+    mov rdi, 5
+    syscall
+
+    ret
+
 GLOBAL ReadLine
 ReadLine:
     mov rdx, rsi

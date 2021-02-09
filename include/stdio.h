@@ -8,6 +8,7 @@ extern "C" {
 #endif
 
 extern int DisplayString(const char* message);
+extern int DisplayHex(uint64_t num);
 extern int ReadLine(char* buffer, size_t bufferSize);
 
 #ifdef __cplusplus
