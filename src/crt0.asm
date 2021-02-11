@@ -4,4 +4,5 @@ EXTERN exit
 _start:
     call main
 
+    mov rdi, rax
     call exit
