@@ -9,7 +9,7 @@ int main() {
 
     while (1) {
         DisplayString("\n> ");
-        int bytesRead = ReadLine(buffer, 128);
+        ReadLine(buffer, 128);
         DisplayString("\n");
         if (strcmp(buffer, "EXIT") == 0)
             break;
