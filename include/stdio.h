@@ -1,15 +1,14 @@
 #ifndef _STDIO_H
 #define _STDIO_H
 
-#include <stddef.h>
+#include <stdint.h>
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 extern int DisplayString(const char* message);
-extern int DisplayHex(uint64_t num);
-extern int ReadLine(char* buffer, size_t bufferSize);
+extern int ReadLine(char* buffer, uint64_t bufferSize);
 
 #ifdef __cplusplus
 }
