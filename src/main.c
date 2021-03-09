@@ -4,18 +4,16 @@
 char buffer[128];
 
 int main() {
-    fwrite("\nLOS Shell v0.2\n\n", sizeof(char), 18, stdout);
+    printf("\nLOS Shell v0.2\n");
 
     while (1) {
-        fwrite("\n> ", sizeof(char), 4, stdout);
+        printf("\n> ");
         fread(buffer, sizeof(char), 128, stdin);
 
         if (strcmp(buffer, "EXIT") == 0)
             break;
-        else {
-            fwrite("\n", sizeof(char), 2, stdout);
-            fwrite(buffer, sizeof(char), 128, stdout);
-        }
+        else
+            printf("\n%s", buffer);
     }
 
     return 0;
