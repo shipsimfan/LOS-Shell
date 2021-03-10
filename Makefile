@@ -20,19 +20,23 @@ LD := x86_64-los-gcc
 
 # BASE RULES
 all: dirs $(LOS_SHELL)
+	@echo "[ SHELL ] Build Complete!"
 
 clean:
-	rm -rf $(OBJ_DIR)/*
-	rm -rf $(BIN_DIR)/*
+	@rm -rf $(OBJ_DIR)/*
+	@rm -rf $(BIN_DIR)/*
+	@echo "[ SHELL ] Cleaned!"
 
 # COMPILATION RULES
 .SECONDEXPANSION:
 
 $(LOS_SHELL): $(C_OBJ_FILES)
-	$(LD) -o $@ $^
+	@echo "[ SHELL ] (LD) $@ . . ."
+	@$(LD) -o $@ $^
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $$(@D)/.
-	$(CC) $(CC_FLAGS) -o $@ $^
+	@echo "[ SHELL ] (CC) $@ . . ."
+	@$(CC) $(CC_FLAGS) -o $@ $^
 
 # DIRECTORY RULES
 $(OBJ_DIR)/.:

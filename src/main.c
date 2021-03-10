@@ -6,10 +6,10 @@
 char buffer[128];
 
 int main() {
-    printf("\nLOS Shell v0.2\n\n");
+    printf("\nLOS Shell v0.2");
 
     while (1) {
-        printf("> ");
+        printf("\n> ");
         fread(buffer, sizeof(char), 128, stdin);
         printf("\n");
 
@@ -21,7 +21,7 @@ int main() {
             int status = wait(pid);
             printf("Child exited with status %i\n", status);
         } else
-            printf("%s\n", buffer);
+            printf("%s", buffer);
     }
 
     return 0;
