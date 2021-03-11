@@ -38,6 +38,7 @@ char* getline() {
         if (c == '\b') {
             len--;
             if (len > 0) {
+                len--;
                 putchar(c);
                 ptr--;
             }
@@ -55,12 +56,15 @@ char* getline() {
     return line;
 }
 
+char cwdBuffer[256];
+
 int main() {
     printf("\nLOS Shell v0.2");
 
     char* line;
     while (1) {
-        printf("\n> ");
+        getcwd(cwdBuffer, 256);
+        printf("\n%s> ", cwdBuffer);
         line = getline();
         printf("\n");
 
@@ -69,12 +73,18 @@ int main() {
 
         if (strcmp(line, "exit") == 0)
             break;
-        else if (line[0] == ':') {
+        if (memcmp(line, "echo", 4) == 0) {
+            if (strlen(line) > 5)
+                printf("%s", line + 5);
+        } else {
             pid_t pid = execute(line);
-            int status = wait(pid);
-            printf("Child exited with status %i\n", status);
-        } else
-            printf("%s", line);
+            if (pid == ~0)
+                printf("Unable to locate %s", line);
+            else {
+                int status = wait(pid);
+                printf("Child exited with status %i\n", status);
+            }
+        }
     }
 
     return 0;
