@@ -59,7 +59,7 @@ char* getline() {
 char cwdBuffer[256];
 
 int main() {
-    printf("\nLOS Shell v0.2");
+    printf("\nLOS Shell v0.2\n");
 
     char* line;
     while (1) {
