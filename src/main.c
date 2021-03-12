@@ -90,6 +90,22 @@ int main() {
                     printf(" (%lli KB)", entries[i].size / 1024);
                 printf("\n");
             }
+        } else if (lineLen > 4 && memcmp(line, "cat ", 4) == 0) {
+            FILE* file = fopen(line + 4, "");
+            if (file == NULL) {
+                printf("Unable to locate %s\n", line + 4);
+                continue;
+            }
+
+            fseek(file, 0, SEEK_END);
+            long size = ftell(file);
+            char* contents = (char*)malloc(size + 1);
+            fseek(file, 0, SEEK_SET);
+            fread(contents, 1, size + 1, file);
+            fclose(file);
+
+            printf("%s\n", contents);
+            free(contents);
         } else {
             pid_t pid = execute(line);
             if (pid == 0)
