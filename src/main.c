@@ -64,7 +64,7 @@ int main() {
     char* line;
     while (1) {
         getcwd(cwdBuffer, 256);
-        printf("\n%s> ", cwdBuffer);
+        printf("%s> ", cwdBuffer);
         line = getline();
         printf("\n");
 
@@ -76,10 +76,20 @@ int main() {
         if (strcmp(line, "exit") == 0)
             break;
         else if (lineLen > 5 && memcmp(line, "echo ", 5) == 0)
-            printf("%s", line + 5);
+            printf("%s\n", line + 5);
         else if (lineLen > 3 && memcmp(line, "cd ", 3) == 0) {
             if (setcwd(line + 3) > 0)
                 printf("Unable to locate %s\n", line + 3);
+        } else if (strcmp(line, "ls") == 0) {
+            unsigned long long num;
+            dirent_t* entries = getdirent(&num);
+            printf("Number of entries: %lli\n", num);
+            for (unsigned long long i = 0; i < num; i++) {
+                printf("\t%s", entries[i].name);
+                if (entries[i].type == DIRENT_TYPE_FILE)
+                    printf(" (%lli KB)", entries[i].size / 1024);
+                printf("\n");
+            }
         } else {
             pid_t pid = execute(line);
             if (pid == 0)
