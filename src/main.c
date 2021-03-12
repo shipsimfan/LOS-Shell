@@ -71,15 +71,19 @@ int main() {
         if (line == NULL)
             abort();
 
+        size_t lineLen = strlen(line);
+
         if (strcmp(line, "exit") == 0)
             break;
-        if (memcmp(line, "echo", 4) == 0) {
-            if (strlen(line) > 5)
-                printf("%s", line + 5);
+        else if (lineLen > 5 && memcmp(line, "echo ", 5) == 0)
+            printf("%s", line + 5);
+        else if (lineLen > 3 && memcmp(line, "cd ", 3) == 0) {
+            if (setcwd(line + 3) > 0)
+                printf("Unable to locate %s\n", line + 3);
         } else {
             pid_t pid = execute(line);
-            if (pid == ~0)
-                printf("Unable to locate %s", line);
+            if (pid == 0)
+                printf("Unable to locate %s\n", line);
             else {
                 int status = wait(pid);
                 printf("Child exited with status %i\n", status);
