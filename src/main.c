@@ -58,7 +58,7 @@ char* getline() {
 
 char cwdBuffer[256];
 
-int main() {
+int main(int argc, char* argv[], char* envp[]) {
     printf("\nLOS Shell v0.2\n");
 
     char* line;
@@ -107,7 +107,7 @@ int main() {
             printf("%s\n", contents);
             free(contents);
         } else {
-            pid_t pid = execute(line);
+            pid_t pid = execute(line, NULL, (const char**)envp);
             if (pid == 0)
                 printf("Unable to locate %s\n", line);
             else {
