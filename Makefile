@@ -22,6 +22,10 @@ LD := x86_64-los-gcc
 all: dirs $(LOS_SHELL)
 	@echo "[ SHELL ] Build Complete!"
 
+install: all
+	@mkdir -p ../sysroot/los
+	@cp $(LOS_SHELL) ../sysroot/los/
+
 clean:
 	@rm -rf $(OBJ_DIR)/*
 	@rm -rf $(BIN_DIR)/*
