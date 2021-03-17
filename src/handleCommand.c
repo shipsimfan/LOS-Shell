@@ -45,6 +45,7 @@ int HandleCommand(char** args, int count) {
 
                 strcat(pathBuffer, "/");
                 strcat(pathBuffer, args[0]);
+                strcat(pathBuffer, ".APP");
 
                 pid_t pid = execute(pathBuffer, (const char**)args, (const char**)environ);
                 if (pid) {

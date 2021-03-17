@@ -9,6 +9,8 @@ char cwdBuffer[256];
 int main(int argc, char* argv[], char* envp[]) {
     printf("\nLOS Shell v0.3\n");
 
+    setenv("PATH", ":0/BIN", 0);
+
     char* line = NULL;
     char** args = NULL;
     int count;
